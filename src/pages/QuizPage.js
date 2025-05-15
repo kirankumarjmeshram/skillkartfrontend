@@ -13,7 +13,7 @@ const QuizPage = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await axios.get(`https://skillcartbackend.onrender.com//api/courses/${courseId}`);
+        const res = await axios.get(`https://skillcartbackend.onrender.com/api/courses/${courseId}`);
         const topic = res.data.topics.find(t => t._id === topicId || t._id.$oid === topicId);
         const quizData = JSON.parse(topic.quiz || '[]');
         setQuiz(quizData);
@@ -38,7 +38,7 @@ const QuizPage = () => {
     setScore(correct);
 
     try {
-      await axios.post(`https://skillcartbackend.onrender.com//api/learners/${learnerId}/progress`, {
+      await axios.post(`https://skillcartbackend.onrender.com/api/learners/${learnerId}/progress`, {
         courseId,
         topicId,
         xpEarned: correct * 5,

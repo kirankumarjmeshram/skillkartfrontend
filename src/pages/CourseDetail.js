@@ -28,7 +28,7 @@ const CourseDetail = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await axios.get(`https://skillcartbackend.onrender.com//api/courses/${courseId}`);
+        const res = await axios.get(`https://skillcartbackend.onrender.com/api/courses/${courseId}`);
         setCourse(res.data);
         setTopics(res.data.topics || []);
       } catch (err) {
@@ -232,7 +232,7 @@ export default CourseDetail;
 //   useEffect(() => {
 //     const fetchCourse = async () => {
 //       try {
-//         const res = await axios.get(`https://skillcartbackend.onrender.com//api/courses/${courseId}`);
+//         const res = await axios.get(`https://skillcartbackend.onrender.com/api/courses/${courseId}`);
 //         setCourse(res.data);
 //         setTopics(res.data.topics || []);
 //       } catch (err) {
@@ -253,7 +253,7 @@ export default CourseDetail;
 //       if (!completedTopics.includes(topicId)) {
 //         setIsSubmitting(true);
 //         try {
-//           await axios.post(`https://skillcartbackend.onrender.com//api/learners/${learnerId}/progress`, {
+//           await axios.post(`https://skillcartbackend.onrender.com/api/learners/${learnerId}/progress`, {
 //             courseId,
 //             topicId,
 //             xpEarned: 10,

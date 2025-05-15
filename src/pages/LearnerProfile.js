@@ -6,7 +6,7 @@ const LearnerProfile = () => {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("https://skillcartbackend.onrender.com//api/users/me", {
+    axios.get("https://skillcartbackend.onrender.com/api/users/me", {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     })
     .then((res) => setProfile(res.data));

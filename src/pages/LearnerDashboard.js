@@ -13,7 +13,7 @@ const LearnerDashboard = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`https://skillcartbackend.onrender.com//api/learners/${learnerId}`);
+        const res = await axios.get(`https://skillcartbackend.onrender.com/api/learners/${learnerId}`);
         setProfile(res.data);
         setLoading(false);
       } catch (err) {

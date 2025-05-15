@@ -61,7 +61,7 @@ const CourseUpload = () => {
         topics: transformedTopics,
       };
 
-      await axios.post("https://skillcartbackend.onrender.com//api/courses", courseData, {
+      await axios.post("https://skillcartbackend.onrender.com/api/courses", courseData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

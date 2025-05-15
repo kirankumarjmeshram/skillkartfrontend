@@ -7,7 +7,7 @@ const RoadmapPage = ({ courseId }) => {
 
   useEffect(() => {
     const fetchRoadmap = async () => {
-      const res = await axios.get(`https://skillcartbackend.onrender.com//api/roadmaps/${courseId}`, {
+      const res = await axios.get(`https://skillcartbackend.onrender.com/api/roadmaps/${courseId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setRoadmap(res.data);

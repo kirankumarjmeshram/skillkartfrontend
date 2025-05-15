@@ -9,7 +9,7 @@ const ProgressTracker = ({ courseId, learnerId }) => {
   useEffect(() => {
     const fetchProgress = async () => {
       try {
-        const res = await axios.get(`https://skillcartbackend.onrender.com//api/roadmap/${learnerId}/${courseId}`);
+        const res = await axios.get(`https://skillcartbackend.onrender.com/api/roadmap/${learnerId}/${courseId}`);
         setProgress(res.data.progress);
         setXp(res.data.xp);
       } catch (err) {
@@ -22,7 +22,7 @@ const ProgressTracker = ({ courseId, learnerId }) => {
 
   const handleProgressChange = async (topicId, newStatus) => {
     try {
-      await axios.put(`https://skillcartbackend.onrender.com//api/roadmap/${learnerId}/${courseId}`, {
+      await axios.put(`https://skillcartbackend.onrender.com/api/roadmap/${learnerId}/${courseId}`, {
         topicId,
         status: newStatus,
       });
