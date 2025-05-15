@@ -6,11 +6,18 @@ const CourseCard = ({ course }) => {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("userInfo")) || {};
-  const enrolledCourses = user.enrolledCourses || [];
+ const user = JSON.parse(localStorage.getItem("user")) || null;
+  const enrolledCourses = user?.enrolledCourses || [];
   const isAlreadyEnrolled = enrolledCourses.includes(course._id);
 
   const handleEnroll = () => {
+    if (!user.email || !user.name) {
+      console.log(user)
+      alert("Please sign in to enroll in this course.");
+      navigate("/login");
+      return;
+    }
+
     if (!isAlreadyEnrolled) {
       const updatedUser = {
         ...user,
@@ -18,6 +25,7 @@ const CourseCard = ({ course }) => {
       };
       localStorage.setItem("userInfo", JSON.stringify(updatedUser));
     }
+
     navigate(`/course/${course._id}`);
   };
 
@@ -25,8 +33,12 @@ const CourseCard = ({ course }) => {
     <Col xs={12} sm={6} md={4}>
       <Card className="h-100 shadow-sm">
         <Card.Body className="d-flex flex-column">
-          <Card.Title className="fw-semibold text-primary">{course.title}</Card.Title>
-          <Card.Text className="text-muted">{course.description?.slice(0, 80)}...</Card.Text>
+          <Card.Title className="fw-semibold text-primary">
+            {course.title}
+          </Card.Title>
+          <Card.Text className="text-muted">
+            {course.description?.slice(0, 80)}...
+          </Card.Text>
 
           <Button
             variant="outline-primary"
@@ -37,17 +49,25 @@ const CourseCard = ({ course }) => {
             {showDetails ? "Hide Details" : "View Details"}
           </Button>
 
-          {/* <Collapse in={showDetails}>
+          <Collapse in={showDetails}>
             <div className="mt-3">
               <p><strong>Category:</strong> {course.category}</p>
               <p><strong>Created By:</strong> {course.createdBy?.name || "Unknown"}</p>
+
+              <div className="mb-3">
+                <label htmlFor="weekInput" className="form-label">
+                  <strong>Will Complete in Week</strong>
+                </label>
+                <input
+                  type="number"
+                  id="weekInput"
+                  placeholder="Enter number of weeks"
+                  className="week-input form-control"
+                />
+              </div>
+
               <p>
-                <label>Will Complete in Week</label>
-<br />
-<input type="number" placeholder="Enter number of weeks" />
-              </p>
-              <p>
-                <strong>XP:</strong> {course.topics?.length * 10} {" "}
+                <strong>XP:</strong> {course.topics?.length * 10}{" "}
                 <Badge bg="info">Est. XP</Badge>
               </p>
 
@@ -61,37 +81,6 @@ const CourseCard = ({ course }) => {
               </div>
             </div>
           </Collapse>
-           */}
-           <Collapse in={showDetails}>
-  <div className="mt-3">
-    <p><strong>Category:</strong> {course.category}</p>
-    <p><strong>Created By:</strong> {course.createdBy?.name || "Unknown"}</p>
-    
-    <div className="mb-3">
-      <label htmlFor="weekInput" className="form-label"><strong>Will Complete in Week</strong></label>
-      <input
-        type="number"
-        id="weekInput"
-        placeholder="Enter number of weeks"
-        className="week-input"
-      />
-    </div>
-
-    <p>
-      <strong>XP:</strong> {course.topics?.length * 10} <Badge bg="info">Est. XP</Badge>
-    </p>
-
-    <div className="d-grid">
-      <Button
-        variant={isAlreadyEnrolled ? "success" : "primary"}
-        onClick={handleEnroll}
-      >
-        {isAlreadyEnrolled ? "Continue Learning" : "Enroll & Start"}
-      </Button>
-    </div>
-  </div>
-</Collapse>
-
         </Card.Body>
       </Card>
     </Col>
