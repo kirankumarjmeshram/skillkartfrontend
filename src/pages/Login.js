@@ -27,9 +27,9 @@ const Login = () => {
       if (user.role === "learner" && !user.profileSetup) {
         navigate("/learner/profile-setup");
       } else if (user.role === "creator") {
-        navigate("/creator/dashboard");
+        navigate("/dashboard");
       } else {
-        navigate("/learner/dashboard");
+        navigate("/dashboard");
       }
     } catch (err) {
       console.error("Login failed", err);
