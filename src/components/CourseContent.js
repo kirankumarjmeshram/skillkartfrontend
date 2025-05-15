@@ -12,7 +12,7 @@ const CourseContent = () => {
     const fetchLectures = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/courses/${id}/lectures`, {
+        const response = await axios.get(`https://skillcartbackend.onrender.com//api/courses/${id}/lectures`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setLectures(response.data);

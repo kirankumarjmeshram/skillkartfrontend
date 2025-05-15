@@ -101,7 +101,7 @@ const ProfileSetup = () => {
       };
 
       await axios.put(
-        `http://localhost:5000/api/users/profile-setup/${userId}`,
+        `https://skillcartbackend.onrender.com//api/users/profile-setup/${userId}`,
         payload,
         {
           headers: {

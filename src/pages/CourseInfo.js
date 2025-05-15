@@ -14,7 +14,7 @@ const CourseInfo = () => {
     const fetchCourse = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/courses/${id}`, {
+        const response = await axios.get(`https://skillcartbackend.onrender.com//api/courses/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCourse(response.data);
@@ -35,7 +35,7 @@ const CourseInfo = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/courses/${id}/enroll`,
+        `https://skillcartbackend.onrender.com//api/courses/${id}/enroll`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

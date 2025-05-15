@@ -12,14 +12,14 @@ const Dashboard = ({ user }) => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/users/${user._id}`).then((res) => {
+    axios.get(`https://skillcartbackend.onrender.com//api/users/${user._id}`).then((res) => {
       setProfile(res.data);
     });
   }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:5000/api/users/profile-setup/${user._id}`, form);
+    await axios.put(`https://skillcartbackend.onrender.com//api/users/profile-setup/${user._id}`, form);
     window.location.reload();
   };
 
