@@ -18,7 +18,7 @@ useEffect(() => {
 }, []);
   useEffect(() => {
     axios
-      .get("https://skillcartbackend.onrender.comapi/courses")
+      .get("https://skillcartbackend.onrender.com/api/courses")
       .then((res) => {
         setCourses(res.data);
         setLoading(false);
